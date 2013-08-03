@@ -28,7 +28,8 @@ def upload(request, uploaded=False):
         form = ImagesForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('upload_success')
+            data = {"response": {"msg": u"Иллюстрация успешно загружена на сервер",}}
+            return redirect('upload_success') if referer else HttpResponse(json.dumps(data), mimetype="application/json")
         elif not referer:
             data = {"response": {"msg": u"Возникла ошибка", "errors": dict(form.errors),}}
             return HttpResponse(json.dumps(data), mimetype="application/json")
