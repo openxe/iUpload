@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import json
 import StringIO
 from PIL import Image
 
@@ -21,12 +22,16 @@ def index(request):
 
 def upload(request, uploaded=False):
     ''' Upload images '''
+    referer = request.META.get('HTTP_REFERER')
+
     if request.method == 'POST':
         form = ImagesForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-
             return redirect('upload_success')
+        elif not referer:
+            data = {"response": {"msg": u"Возникла ошибка", "errors": dict(form.errors),}}
+            return HttpResponse(json.dumps(data), mimetype="application/json")
     else:
         form = ImagesForm()
 
