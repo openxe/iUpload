@@ -2,4 +2,4 @@
 *.pot
 *.pyc
 local_settings.py
-database.sqllite3
+*.sqllite3
