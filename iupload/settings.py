@@ -126,6 +126,10 @@ INSTALLED_APPS = (
     'iupload',
 )
 
+# Maximum upload file size (bytes)
+CONTENT_TYPES = ['image']
+MAX_UPLOAD_SIZE = 20*1024*1024 # 20 Mb
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
