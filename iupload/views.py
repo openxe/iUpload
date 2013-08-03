@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
 import os
+import StringIO
+from PIL import Image
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -29,4 +32,18 @@ def upload(request, uploaded=False):
 
     return render(request, 'upload.html', {'form': form, 'uploaded': uploaded,} )
 
+def resize(request, width, height, path):
+    ''' Resize image and output to client '''
+
+    infile = os.path.join(settings.MEDIA_ROOT, path)
+
+    try:
+        img = Image.open(infile)
+        img = img.resize((int(width), int(height)), Image.ANTIALIAS)
+
+        response = HttpResponse(mimetype="image/png")
+        img.save(response, 'PNG')
+        return response
+    except:
+        return HttpResponse(u'Возникла ошибка при изменение размера иллюстрации.')
 
