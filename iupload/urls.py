@@ -8,4 +8,5 @@ urlpatterns = patterns('',
 
     url(r'^$', 'iupload.views.index', name='home'),
     url(r'^upload$', 'iupload.views.upload', name='upload'),
+    url(r'^upload_success$', 'iupload.views.upload', {'uploaded': True,}, name='upload_success'),
 )

@@ -3,6 +3,13 @@
 {% block body %}
     <h1>Загрузка нового файла</h1>
 
+    {% if uploaded %}
+        <div class="alert alert-success">
+            <strong>Файл успешно опубликован на нашем сайте!</strong> 
+            Посмотреть все опубликованные файлы можно на <a href="{% url 'home' %}">главной странице</a>.
+        </div>    
+    {% endif %}
+
     <form method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset>
