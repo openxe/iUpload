@@ -7,7 +7,7 @@
     <h1>Загруженные файлы</h1>
 
     {% for image in images %}
-    	<img src="{{ image.file.url }}" class="img-circle">
+    	<img src="{{ image.file.url }}" class="img-thumbnail">
     {% empty %}
         <div class="alert">
             Вы пока не загрузили ни одной иллюстрации. Для загрузки иллюстрации на сервер, пройдите по ссылке <a href="{% url 'upload' %}">{% url 'upload' %}</a>
