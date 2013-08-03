@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <h1>Загрузка нового файла</h1>
+
+    <form method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Выберите файл для загрузки (jpg, png, gif),  &lt;20 Мб</legend>
+
+            <div class="form-group">
+                {{ form }}
+            </div>
+
+            <button type="submit" class="btn btn-default">Загрузить</button>
+        </fieldset>        
+    </form>
+
+{% endblock %}
